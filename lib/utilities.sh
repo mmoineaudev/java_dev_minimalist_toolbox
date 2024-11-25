@@ -245,10 +245,8 @@ depgrep() {
 todolist() {
     # TODO Redo
     code ${TODOFILE}
-    echo -e "${GREEN_STYLE} type '${BLUE_STYLE}bash${GREEN_STYLE}' to display the todolist\n
-    ... or '${BLUE_STYLE}rm ${TODOFILE}${GREEN_STYLE}' ${RAZ_STYLE}"
+    echo -e "${GREEN_STYLE} type '${BLUE_STYLE}bash${GREEN_STYLE}' to display the todolist\n    ... or '${BLUE_STYLE}rm ${TODOFILE}${GREEN_STYLE}' ${RAZ_STYLE}"
 }
-
 
 
 clean_m2() {
@@ -256,27 +254,8 @@ clean_m2() {
     cd ${PATH_TO_M2}
     ls -Rf | grep '.jar' | grep -v '.sha1' | wc -l
 
-    rm -rf ${PATH_TO_M2}/* && echo "OK" || echo "KO"
-}
-ask_maven() {
-    doc=' add $3 for last update check '
+    rm -rf ${PATH_TO_M2}/* && echo "OK" || echo "KO"}
 
-    groupId=$1
-    artifactId=$2
-    copyGID=${groupId}
-    groupId=${groupId//.//}
-
-    echo -e "${ORANGE_STYLE} MAVEN-CENTRAL ${RAZ_STYLE}"
-    curl -s https://repo1.maven.org/maven2/${groupId}/${artifactId}/maven-metadata.xml # | tail -n -20
-    is_in_maven=$?
-    echo -e "${ORANGE_STYLE} NEXUS-CENTRAL ${RAZ_STYLE}"
-    curl -s https://nexus.devnet.klm.com/repository/public/${groupId}/${artifactId}/maven-metadata.xml # | tail -n -20
-
-    if [[ ! -z $3 ]]; then
-        "/c/Program Files/Google/Chrome/Application/chrome.exe" "https://central.sonatype.com/artifact/${copyGID}/${artifactId}?smo=true"
-    fi
-
-    echo
 
 }
 
@@ -294,10 +273,3 @@ hello() {
 }
 
 
-# pit of doom
-
-#random_gin() {
-#    while :; do
-#        echo $(shuf -i 10000000-999999999999 -n 1)
-#    done
-#}
