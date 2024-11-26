@@ -14,10 +14,8 @@
 BASEDIR=$(dirname "$0")
 # Déclaration des noms de fichiers dans le répertoire des dépendances 
 IMPORTS=(
-    #########
-    ./../config
-    #########
-    style.sh
+    config.sh # is the file to be modified for adapting the script
+    style.sh 
     prompt.sh
     random.sh
     utilities.sh
@@ -31,7 +29,7 @@ for dependancy in ${IMPORTS[@]}; do
     status="$?"
     if [ $status -ne "0" ]; then
         echo -e "\e[91m ${BASEDIR}/lib/${dependancy} could not be sourced ! \n Stopping $0. \e[0m"
-        exit 1
+        #exit 1
     fi
     echo "... Status : [${status}]"
 done
@@ -45,3 +43,5 @@ print_avalaible_functions() {
     print_separator
 }
 ######################################
+
+print_avalaible_functions
