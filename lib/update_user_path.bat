@@ -8,10 +8,20 @@ echo The following changes will be made:
 echo Paths to add to the system PATH: !paths!
 echo Environment variables and their values: !envVars!
 
+echo Current PATH: %PATH%
+
+set ""oldPath=%PATH%""
+set ""newPath=!oldPath;!paths!""
+
+echo Old PATH: !oldPath!
+echo New PATH: !newPath!
+
 set /p confirm=Confirm changes? (Y/N):
 if /i ""!confirm!"" == ""Y"" (
-    setx PATH ""%PATH%;!paths!""
-    for %%v in (!envVars!) do setx %%v
+    setx PATH ""!newPath!""
+    for %%v in (!envVars!) do (
+        setx %%v
+    )
 ) else (
     echo Changes not made.
 )
